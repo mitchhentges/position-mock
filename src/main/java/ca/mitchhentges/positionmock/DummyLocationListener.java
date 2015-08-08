@@ -11,7 +11,8 @@ import android.util.Log;
  */
 public class DummyLocationListener implements LocationListener {
     public void onLocationChanged(Location location) {
-        Log.i("MFW", "|" + location.getSpeed());
+        Log.i("DummyLocationListener", "latitude|" + location.getLatitude());
+        Log.i("DummyLocationListener", "longitude|" + location.getLongitude());
     }
 
     public void onStatusChanged(String s, int i, Bundle bundle) {
