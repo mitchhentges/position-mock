@@ -4,13 +4,15 @@ def env = System.getenv()
 def apiKey = env['API_KEY'] ?: positionMockApiKey
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 21
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "ca.mitchhentges.positionmock"
         minSdkVersion 11
-        targetSdkVersion 22
+        //We're forced to use appcompat 21.0.3 due to Travis, and the target sdk should match
+        //noinspection OldTargetApi
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -26,6 +28,11 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services:7.5.0'
+    //Travis requires no greater than 6.5.87 right now
+    //noinspection GradleDependency
+    compile 'com.google.android.gms:play-services:6.5.87'
+    //Travis requires no greater than 21.0.3 right now
+    //noinspection GradleDependency
+    compile 'com.android.support:appcompat-v7:21.0.3'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
