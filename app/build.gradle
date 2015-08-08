@@ -20,7 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         all {
-            resValue "string", "mapsApiKey", positionMockApiKey
+            resValue "string", "mapsApiKey", apiKey
         }
     }
 }
