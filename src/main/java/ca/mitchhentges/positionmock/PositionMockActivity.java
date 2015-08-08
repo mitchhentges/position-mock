@@ -10,6 +10,8 @@ import android.os.Bundle;
  */
 public class PositionMockActivity extends Activity {
 
+    private CurrentLocation currentLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,23 +21,18 @@ public class PositionMockActivity extends Activity {
         final LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new DummyLocationListener());
 
-        final PositionPublish positionPublish = new PositionPublish(locationManager);
+        currentLocation = new CurrentLocation(locationManager);
+        currentLocation.init();
 
-        new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    double latitude = Math.random() * 240 - 120;
-                    double longitude = Math.random() * 360 - 180;
+        double latitude = Math.random() * 240 - 120;
+        double longitude = Math.random() * 360 - 180;
 
-                    positionPublish.publish(new Position(latitude, longitude));
-                }
-            }
-        }.start();
+        currentLocation.set(new Position(latitude, longitude));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        currentLocation.clean();
     }
 }
