@@ -19,5 +19,5 @@ to "maven local" to build Position Mock.
 I used to use "Fake Location" for mocking my position on Android, but after you use it long enough, it bombards
 you with ads. Now's a good time to make a streamlined open-source version.
 
-Fake Location screenshot:
-![Fake Location](http://i.imgur.com/iAcqxPt.png)
+Mockup of ending version:
+![Mockup](http://i.imgur.com/oDQr7JN.png)
