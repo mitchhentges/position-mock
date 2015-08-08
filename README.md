@@ -9,10 +9,8 @@ Google dropped support for getting Android sources from Maven local, so you're g
 to "maven local" to build Position Mock.
 
 1. Install Android SDK
-2. Install Android 21 Platform
-3. Clone [Maven Android SDK Deployer](https://github.com/simpligility/maven-android-sdk-deployer)
-4. Run `mvn install -P 5.1`
-5. Run `mvn package` in this repository
+2. Install Android 22 Platform and Google Play services
+3. Run `gradle build`
 
 ## Purpose
 
