@@ -13,3 +13,11 @@ to "maven local" to build Position Mock.
 3. Clone [Maven Android SDK Deployer](https://github.com/simpligility/maven-android-sdk-deployer)
 4. Run `mvn install -P 5.1`
 5. Run `mvn package` in this repository
+
+## Purpose
+
+I used to use "Fake Location" for mocking my position on Android, but after you use it long enough, it bombards
+you with ads. Now's a good time to make a streamlined open-source version.
+
+Fake Location screenshot:
+![Fake Location](http://i.imgur.com/iAcqxPt.png)
