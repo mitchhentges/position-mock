@@ -1,4 +1,4 @@
-# Position Mock
+# Position Mock [![Build Status](https://travis-ci.org/mitchhentges/position-mock.svg?branch=master)](https://travis-ci.org/mitchhentges/position-mock)
 
 Mocks a static location on the Android platform.
 Built using Maven, because Gradle is slow, less awesome, and has less glorious IntelliJ integration
