@@ -1,14 +1,17 @@
 package ca.mitchhentges.positionmock;
 
-import android.app.Activity;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 /**
  * Created by Mitch
  * on 8/7/2015.
  */
-public class PositionMockActivity extends Activity {
+public class PositionMockActivity extends ActionBarActivity {
 
     private CurrentLocation currentLocation;
 
@@ -34,5 +37,22 @@ public class PositionMockActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         currentLocation.clean();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.apply:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
