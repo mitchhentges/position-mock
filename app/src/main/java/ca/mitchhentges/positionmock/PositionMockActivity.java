@@ -15,7 +15,7 @@ public class PositionMockActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.map);
 
         //todo remove this debugging stuff
         final LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);

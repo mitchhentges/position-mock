@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "ca.mitchhentges.positionmock"
-        minSdkVersion 7
+        minSdkVersion 9
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -16,9 +16,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        all {
+            resValue "string", "mapsApiKey", positionMockApiKey
+        }
     }
 }
 
 dependencies {
+    compile 'com.google.android.gms:play-services:7.5.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

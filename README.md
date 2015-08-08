@@ -10,6 +10,8 @@ to "maven local" to build Position Mock.
 
 1. Install Android SDK
 2. Install Android 22 Platform and Google Play services
+3. Get a [Google Maps API Key](https://developers.google.com/maps/documentation/android/signup)
+4. Save your key in `~/gradle.properties` under the variable `positionMockApiKey`
 3. Run `gradle build`
 
 ## Purpose
