@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def env = System.getenv()
+def apiKey = env['API_KEY'] ?: positionMockApiKey
+
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
