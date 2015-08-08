@@ -20,7 +20,7 @@ public class Position {
     }
 
     public Location toLocation() {
-        Location location = new Location(PositionPublish.PROVIDER);
+        Location location = new Location(CurrentLocation.PROVIDER);
         location.setLatitude(latitude);
         location.setLongitude(longitude);
 
@@ -36,7 +36,7 @@ public class Position {
         try {
             Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
             locationJellyBeanFixMethod.invoke(location);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
