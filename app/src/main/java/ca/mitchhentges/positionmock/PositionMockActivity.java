@@ -7,30 +7,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Mitch
  * on 8/7/2015.
  */
-public class PositionMockActivity extends ActionBarActivity {
+public class PositionMockActivity extends ActionBarActivity implements OnMapReadyCallback {
 
     private CurrentLocation currentLocation;
+    private Map map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
 
-        //todo remove this debugging stuff
-        final LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new DummyLocationListener());
-
-        currentLocation = new CurrentLocation(locationManager);
+        map = new Map();
+        currentLocation = new CurrentLocation((LocationManager) getSystemService(LOCATION_SERVICE));
         currentLocation.init();
 
-        double latitude = Math.random() * 240 - 120;
-        double longitude = Math.random() * 360 - 180;
-
-        currentLocation.set(new Position(latitude, longitude));
+        ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
     }
 
     @Override
@@ -46,13 +46,19 @@ public class PositionMockActivity extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.apply:
-                finish();
+                map.applyTarget(currentLocation);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        map.setGoogleMap(googleMap);
     }
 }
