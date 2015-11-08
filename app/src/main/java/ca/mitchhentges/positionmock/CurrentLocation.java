@@ -22,7 +22,7 @@ public class CurrentLocation {
         }
     };
 
-    private Location current;
+    private Position current;
     private boolean canMock = true;
 
     public CurrentLocation(LocationManager locationManager) {
@@ -43,7 +43,7 @@ public class CurrentLocation {
     }
 
     public void set(Position position) {
-        current = position.toLocation();
+        current = position;
     }
 
     public void clean() {
@@ -61,7 +61,7 @@ public class CurrentLocation {
         }
 
         if (current != null) {
-            locationManager.setTestProviderLocation(PROVIDER, current);
+            locationManager.setTestProviderLocation(PROVIDER, current.toLocation());
         }
     }
 
