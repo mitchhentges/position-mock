@@ -23,12 +23,17 @@ public class CurrentLocation {
     };
 
     private Location current;
+    private boolean canMock = true;
 
     public CurrentLocation(LocationManager locationManager) {
         this.locationManager = locationManager;
     }
 
     public void init() {
+        if (!canMock) {
+            return;
+        }
+
         locationManager.addTestProvider(PROVIDER, false, false, false, false, true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
         locationManager.setTestProviderEnabled(PROVIDER, true);
         locationManager.setTestProviderStatus(PROVIDER, LocationProvider.AVAILABLE, null, System.currentTimeMillis());
@@ -42,13 +47,29 @@ public class CurrentLocation {
     }
 
     public void clean() {
+        if (!canMock) {
+            return;
+        }
+
         locationManager.removeTestProvider(PROVIDER);
         publishTask.cancel();
     }
 
     private void applyToSystem() {
+        if (!canMock) {
+            return;
+        }
+
         if (current != null) {
             locationManager.setTestProviderLocation(PROVIDER, current);
         }
+    }
+
+    public void setCanMock(boolean canMock) {
+        this.canMock = canMock;
+    }
+
+    public boolean canMock() {
+        return canMock;
     }
 }
