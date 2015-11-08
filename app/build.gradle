@@ -7,7 +7,7 @@ if (!apiKey) {
         apiKey = positionMockApiKey
     } else {
         apiKey = "PLACEHOLDER_API_KEY"
-    }        
+    }
 }
 
 android {
