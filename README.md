@@ -1,12 +1,9 @@
 # Position Mock [![Build Status](https://travis-ci.org/mitchhentges/position-mock.svg?branch=master)](https://travis-ci.org/mitchhentges/position-mock)
 
 Mocks a static location on the Android platform.
-Built using Maven, because Gradle is slow, less awesome, and has less glorious IntelliJ integration
+Built using Gradle, because it's the default Android build tool supported by Android Studio
 
 ## Building
-
-Google dropped support for getting Android sources from Maven local, so you're going to need to install Android 5.1
-to "maven local" to build Position Mock.
 
 1. Install Android SDK
 2. Run `android`, and install:
