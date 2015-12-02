@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 
 /**
  * Created by Mitch
@@ -91,8 +93,7 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.apply:
-                titleBarAnimator.animateTitleBar();
-                map.applyTarget(currentLocation);
+                applyMockLocation();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -102,5 +103,10 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map.setGoogleMap(googleMap);
+    }
+
+    public void applyMockLocation() {
+        titleBarAnimator.animateTitleBar();
+        map.applyTarget(currentLocation);
     }
 }
