@@ -1,7 +1,13 @@
 # Position Mock [![Build Status](https://travis-ci.org/mitchhentges/position-mock.svg?branch=master)](https://travis-ci.org/mitchhentges/position-mock)
 
 Mocks a static location on the Android platform.
-Built using Gradle, because it's the default Android build tool supported by Android Studio
+
+## How to use
+
+1. Use standard Google Maps motions to drag map around until black dot in centre corresponds to location that you'd
+like to "mock to"
+2. Either hit the `APPLY` button or do a three-finger-tap to apply the mocked location
+3. Once the title bar flashes green, the position has been mocked
 
 ## Building
 
