@@ -1,14 +1,9 @@
 package ca.mitchhentges.positionmock;
 
-import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
@@ -16,13 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-
-import java.io.IOException;
 
 /**
  * Created by Mitch
@@ -32,11 +23,13 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
 
     private CurrentLocation currentLocation;
     private Map map;
+    private TitleBarAnimator titleBarAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        titleBarAnimator = new TitleBarAnimator(this);
 
         try {
             map = new Map();
@@ -81,43 +74,6 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
                 .show();
     }
 
-    private void shoop() {
-        // Initial colors of each system bar.
-        final int toolbarColor = getResources().getColor(R.color.toolbar_color);
-        final int toolbarToColor = getResources().getColor(R.color.toolbar_to_color);
-        final int duration = 500;
-
-        ValueAnimator anim = ValueAnimator.ofFloat(0, 1);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                // Use animation position to blend colors.
-                float position = animation.getAnimatedFraction();
-
-                if (position > 0.5) {
-                    position = Math.abs(position - 1);
-                }
-
-                Log.i("DERP", animation.getAnimatedFraction() + "|" + position * 2);
-                int blended = blendColors(toolbarColor, toolbarToColor, position * 2);
-                ColorDrawable background = new ColorDrawable(blended);
-                getSupportActionBar().setBackgroundDrawable(background);
-            }
-        });
-
-        anim.setDuration(duration).start();
-    }
-
-    private int blendColors(int from, int to, float ratio) {
-        final float inverseRatio = 1f - ratio;
-
-        final float r = Color.red(to) * ratio + Color.red(from) * inverseRatio;
-        final float g = Color.green(to) * ratio + Color.green(from) * inverseRatio;
-        final float b = Color.blue(to) * ratio + Color.blue(from) * inverseRatio;
-
-        return Color.rgb((int) r, (int) g, (int) b);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -135,7 +91,7 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.apply:
-                shoop();
+                titleBarAnimator.animateTitleBar();
                 map.applyTarget(currentLocation);
                 return true;
             default:
