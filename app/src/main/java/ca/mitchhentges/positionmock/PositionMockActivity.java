@@ -3,7 +3,6 @@ package ca.mitchhentges.positionmock;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -12,13 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-
-import java.io.IOException;
 
 /**
  * Created by Mitch
@@ -28,11 +23,13 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
 
     private CurrentLocation currentLocation;
     private Map map;
+    private TitleBarAnimator titleBarAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        titleBarAnimator = new TitleBarAnimator(this);
 
         try {
             map = new Map();
@@ -94,6 +91,7 @@ public class PositionMockActivity extends ActionBarActivity implements OnMapRead
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.apply:
+                titleBarAnimator.animateTitleBar();
                 map.applyTarget(currentLocation);
                 return true;
             default:

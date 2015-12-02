@@ -12,7 +12,7 @@ Built using Gradle, because it's the default Android build tool supported by And
     * Google Repository
     * Android Support Repository
 3. Get a [Google Maps API Key](https://developers.google.com/maps/documentation/android/signup)
-4. In `~/gradle.properties`, enter `positionMockApiKey=YOUR_KEY_HERE`
+4. In `~/gradle.properties`, enter `positionMockApiKey=YOUR_KEY_HERE` (or just set the environment variable `API_KEY`)
 3. Run `gradle build`
 
 ## Purpose
