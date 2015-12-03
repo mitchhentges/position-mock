@@ -20,8 +20,8 @@ android {
         //We're forced to use appcompat 21.0.3 due to Travis, and the target sdk should match
         //noinspection OldTargetApi
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "0.3"
     }
     buildTypes {
         release {
